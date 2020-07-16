@@ -13,7 +13,21 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-
+/**
+ * 
+ * @param {integer} min 最小数整数
+ * @param {integer} max 最大数
+ * @param {integer} n 小数点后位数
+ */
+function random (min, max, n){
+  // n位小数
+  let rand0_n = Math.random().toFixed(n);
+  let randInt = (Math.random() * max).toFixed(0) % (max - min) + 1 + min;
+  return n === 0 ? randInt : randInt + rand0_n;
+  
+  
+}
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  random : random
 }

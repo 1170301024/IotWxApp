@@ -10,12 +10,12 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view> -->
-  <!-- 信息/数据 -->
-  <view class="">
-  <text>温度：1</text>
+  <!-- 信息/数据 --> 
+  <view class="parkinfo">
+  <text>温度：{{temperature}}</text>
 
-  <text>湿度：2</text>
-  <text>光照：3</text>
+  <text>湿度：{{humidity}}</text>
+  <text>光照：{{lightIntensity}}</text>
   </view>
   <view class="map">
   <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="15" markers="{{markers}}" polyline="{{polyline}}" style="width: {{mapWidth}}px; height: {{mapHeight}}px;"></map>
@@ -24,6 +24,7 @@
   <view class="">
   <button bindtap="updateRoute">更新路线</button>
   <button bindtap="selectSights">选择景点</button>
+  <button bindtap="touristStart">开始</button>
   </view>
   
 </view>

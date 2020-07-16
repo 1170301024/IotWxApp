@@ -18,7 +18,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.11.3",
 	"appid": "wx5a58516ad92727ff",
-	"projectname": "LotWxApp",
+	"projectname": "IotWxApp",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

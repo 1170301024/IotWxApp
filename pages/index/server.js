@@ -1,3 +1,4 @@
+const util = require("../../utils/util.js");
 /**
  * 用于表示地图中的点，一个景点的地图通过Point来进行构建
  */
@@ -43,7 +44,7 @@ class Sight {
     this.open = open;
 
     // 景点的游客人数
-    this.numOfTourists = numOfTourists;
+    this.numOfTourists = util.random(0, 500, 0);
   }
 }
 
@@ -195,42 +196,42 @@ const tiantanMap = [
  * 表示天坛的所有景点信息，因为景点信息可以随时更新，所以不是const
  */
 var tiantanSights = {
-  "昭亨门" : new Sight(59, "昭亨门", [], true, random()),
-  "泰元门" : new Sight(60, "泰元门", [], true, random()),
-  "内坛" : new Sight(61, "内坛", [], true, random()),
-  "棂星门" : new Sight(62, "棂星门", [], true, random()),
-  "圜丘" : new Sight(63, "圜丘", [], true, random()),
-  "燎炉" : new Sight(64, "燎炉", [], true, random()),
-  "回音壁" : new Sight(65, "回音壁", [], true, random()),
-  "皇穹宇" : new Sight(66, "皇穹宇", [], true, random()),
-  "东配殿" : new Sight(67, "东配殿", [], true, random()),
-  "西配殿" : new Sight(68, "西配殿", [], true, random()),
-  "问天柏" : new Sight(69, "问天柏", [], true, random()),
-  "成贞门" : new Sight(70, "成贞门", [], true, random()),
-  "三座门" : new Sight(71, "三座门", [], true, random()),
-  "御辇" : new Sight(72, "御辇", [], true, random()),
-  "斋宫" : new Sight(73, "斋宫", [], true, random()),
-  "乾隆铜钟" : new Sight(74, "乾隆铜钟", [], true, random()),
-  "西天门" : new Sight(75, "西天门", [], true, random()),
-  "具服台" : new Sight(76, "具服台", [], true, random()),
-  "导游图" : new Sight(77, "导游图", [], true, random()),
-  "外坛" : new Sight(78, "外坛", [], true, random()),
-  "古柏林" : new Sight(79, "古柏林", [], true, random()),
-  "宰牲亭" : new Sight(80, "宰牲亭", [], true, random()),
-  "七星石" : new Sight(81, "七星石", [], true, random()),
-  "西南门店" : new Sight(82, "西南门店", [], true, random()),
-  "膳饮斋" : new Sight(83, "膳饮斋", [], true, random()),
-  "神厨" : new Sight(84, "神厨", [], true, random()),
-  "双环万寿亭" : new Sight(85, "双环万寿亭", [], true, random()),
-  "祈年殿售票处" : new Sight(86, "祈年殿售票处", [], true, random()),
-  "花甲门" : new Sight(87, "花甲门", [], true, random()),
-  "月季园" : new Sight(88, "月季园", [], true, random()),
-  "百花亭" : new Sight(89, "百花亭", [], true, random()),
-  "杏花林" : new Sight(90, "杏花林", [], true, random()),
-  "北天门" : new Sight(91, "北天门", [], true, random()),
-  "皇乾殿" : new Sight(92, "皇乾殿", [], true, random()),
-  "祈年门" : new Sight(93, "祈年门", [], true, random()),
-  "祈年殿" : new Sight(94, "祈年殿", [], true, random()),
+  "昭亨门" : new Sight(59, "昭亨门", [], true),
+  "泰元门" : new Sight(60, "泰元门", [], true),
+  "内坛" : new Sight(61, "内坛", [], true),
+  "棂星门" : new Sight(62, "棂星门", [], true),
+  "圜丘" : new Sight(63, "圜丘", [], true),
+  "燎炉" : new Sight(64, "燎炉", [], true),
+  "回音壁" : new Sight(65, "回音壁", [], true),
+  "皇穹宇" : new Sight(66, "皇穹宇", [], true),
+  "东配殿" : new Sight(67, "东配殿", [], true),
+  "西配殿" : new Sight(68, "西配殿", [], true),
+  "问天柏" : new Sight(69, "问天柏", [], true),
+  "成贞门" : new Sight(70, "成贞门", [], true),
+  "三座门" : new Sight(71, "三座门", [], true),
+  "御辇" : new Sight(72, "御辇", [], true),
+  "斋宫" : new Sight(73, "斋宫", [], true),
+  "乾隆铜钟" : new Sight(74, "乾隆铜钟", [], true),
+  "西天门" : new Sight(75, "西天门", [], true),
+  "具服台" : new Sight(76, "具服台", [], true),
+  "导游图" : new Sight(77, "导游图", [], true),
+  "外坛" : new Sight(78, "外坛", [], true),
+  "古柏林" : new Sight(79, "古柏林", [], true),
+  "宰牲亭" : new Sight(80, "宰牲亭", [], true),
+  "七星石" : new Sight(81, "七星石", [], true),
+  "西南门店" : new Sight(82, "西南门店", [], true),
+  "膳饮斋" : new Sight(83, "膳饮斋", [], true),
+  "神厨" : new Sight(84, "神厨", [], true),
+  "双环万寿亭" : new Sight(85, "双环万寿亭", [], true),
+  "祈年殿售票处" : new Sight(86, "祈年殿售票处", [], true),
+  "花甲门" : new Sight(87, "花甲门", [], true),
+  "月季园" : new Sight(88, "月季园", [], true),
+  "百花亭" : new Sight(89, "百花亭", [], true),
+  "杏花林" : new Sight(90, "杏花林", [], true),
+  "北天门" : new Sight(91, "北天门", [], true),
+  "皇乾殿" : new Sight(92, "皇乾殿", [], true),
+  "祈年门" : new Sight(93, "祈年门", [], true),
+  "祈年殿" : new Sight(94, "祈年殿", [], true),
 }
 
 // 默认推荐景点
@@ -278,32 +279,59 @@ function updatePosition(touristId, curentPosition){
     return true;
   }
   return false;
-
-  
 }
 
 /**
  * 服务器为用户计算最新的规划路径
  * @param touristId 游客Id 
  */
-function planRoute(selectSightList){
+function planRoute(selectSightList, testid){
   let selectIds = [59, 1, 61, 4, 62, 63, 64, 8, 13, 14, 15, 65, 15, 16, 18, 20, 70, 76, 38, 39, 77,
             81, 46, 42, 41, 78];
   let defaultIds = [59, 1, 61, 4, 62, 63, 64, 8, 13, 14, 15, 65, 15, 14, 69, 21, 
             71, 22, 29, 74, 24, 34, 35, 36, 37, 76, 93, 94];
+
+  let testId1 = [72, 31, 70, 76, 37, 36, 87, 93]
   let route = [];
 
   let ids = selectSightList.length === 0 ? defaultIds : selectIds;
+
+  switch(testid){
+    case 1:
+      ids = testId1;
+      break;
+  }
   for (let id of ids){
     route.push(tiantanMap[id-1].getCoordinate());
   }
   return route;
+}
 
+function parkStatus(){
+  let t = util.random(30, 32, 2),
+      h = util.random(70, 72, 2),
+      l = util.random(1250, 1300, 0);
 
+  let sightList = [];
+  for (let sight of Object.values(tiantanSights)) {
+    console.log(sight)
+    sightList.push(sight);
+  }
+  let data  = {
+    temperature : t,
+    humidity : h,
+    lightIntensity : l,
+    sightStatus : sightList
+  };
+
+  return data;
+  
+  
 }
 
 module.exports = {
   tiantanMap : tiantanMap,
   Point : Point,
-  planRoute : planRoute
+  planRoute : planRoute,
+  parkStatus : parkStatus,
 }

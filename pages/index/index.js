@@ -1,13 +1,15 @@
 //index.js
 //获取应用实例
 const app = getApp()
-const server = require("./server.js")
+const server = require("./server.js");
+const test = require("./test.js");
 
 /**
  * 用户选择的景点列表，没有选择时为0
  */
 var selectSightsList = [];
 
+var globalThis;
 /**
  * 用来存储景区所有景点的相关信息,该变量由getParkRoadmap函数进行更新，景点属性如下
  * {
@@ -54,37 +56,89 @@ var  planRoutePoints= [
  *  可以设置为每10分钟更新一次状态信息。
  */
 function getSightsStatus() {
-  wx.request({
-    url: 'url',
-    data : {}, 
+  // wx.request({
+  //   url: 'url',
+  //   data : {}, 
     
-    /**
-     * 从服务器成功获得园区以及各个景点的状态信息
-     * 
-     * @param {*} res 服务器返回的JSON数据， 结构如下：
-     * {
-     *   "temperature" : 温度,
-     *   "humidity" : 湿度,
-     *   "lightIntensity" : 光强,
-     *
-     *   // 每个景点的状态
-     *   "sightStatus" : 
-     *     [{
-     *         "longitude" : longitude,
-     *         "latitude"  : latitude,
-     *         "sightName" : 景点名称,
-     *         "id" : 序号,
-     *         "open" : true | false
-     *         "numOfTourists" : 景点当前游客人数，
-     *         "sightLabels" : [] // 景点标签
-     *     }
-     *     ...
-     * ]}
-     * 
-     *  
-     */
-    success : function (res){
-    }
+  //   /**
+  //    * 从服务器成功获得园区以及各个景点的状态信息
+  //    * 
+  //    * @param {*} res 服务器返回的JSON数据， 结构如下：
+  //    * {
+  //    *   "temperature" : 温度,
+  //    *   "humidity" : 湿度,
+  //    *   "lightIntensity" : 光强,
+  //    *
+  //    *   // 每个景点的状态
+  //    *   "sightStatus" : 
+  //    *     [{
+  //    *         "longitude" : longitude,
+  //    *         "latitude"  : latitude,
+  //    *         "sightName" : 景点名称,
+  //    *         "id" : 序号,
+  //    *         "open" : true | false
+  //    *         "numOfTourists" : 景点当前游客人数，
+  //    *         "sightLabels" : [] // 景点标签
+  //    *     }
+  //    *     ...
+  //    * ]}
+  //    * 
+  //    *  
+  //    */
+  //   success : function (res){
+  //   }
+  // });
+  let data = server.parkStatus();
+
+  globalThis.setData({
+    temperature : data.temperature,
+    humidity : data.humidity,
+    lightIntensity : data.lightIntensity
+  });
+  sightList = data.sightStatus;
+
+  let markers = [];
+  let hotMarker = [];
+  let mildMarker = [];
+  let coldMarker = [];
+  let id = 0;
+  for (let s of sightList){
+   if (s.numOfTourists < 100){
+     markers.push({
+       id : id,
+       longitude : server.tiantanMap[s.point-1].longitude,
+       latitude : server.tiantanMap[s.point-1].latitude,
+       iconPath : "../../images/cold.png",
+       width : 20,
+       height : 20
+     })
+   }
+   else if(s.numOfTourists >= 100 && s.numOfTourists < 300){
+    markers.push({
+      id : id,
+      longitude : server.tiantanMap[s.point-1].longitude,
+      latitude : server.tiantanMap[s.point-1].latitude,
+      iconPath : "../../images/warm.png",
+      width : 20,
+      height : 20
+    })
+   }
+   else {
+    markers.push({
+      id : id,
+      longitude : server.tiantanMap[s.point-1].longitude,
+      latitude : server.tiantanMap[s.point-1].latitude,
+      iconPath : "../../images/hot.png",
+      width : 20,
+      height : 20
+
+    })
+   }
+   id++;
+  }
+  console.log(markers)
+  globalThis.setData({
+    markers : markers 
   });
 }
 
@@ -118,8 +172,8 @@ function getParkRoadmap() {
 /**
  * 用于获得系统为用户规划的参观路线图
  */
-function getPlanRoute() {
-  let data = server.planRoute(selectSightsList);
+function getPlanRoute(testId) {
+  let data = server.planRoute(selectSightsList, testId);
   planRoutePoints = data;
   
   /* wx.request({
@@ -137,19 +191,21 @@ function getPlanRoute() {
   */
 }
 
-var gloalThis;
+
 
 function updateTouristRouteTimer(){
-  console.log(';;;')
-  let polyline = gloalThis.data.polyline;
+
+  let polyline = globalThis.data.polyline;
   let touristRouteLength = polyline[1].points.length;
   console.log(touristRouteLength)
-  polyline[1].points[touristRouteLength] = polyline[0].points[touristRouteLength]; 
-  gloalThis.setData({
+  // polyline[1].points[touristRouteLength] = polyline[0].points[touristRouteLength]; 
+  polyline[1].points[touristRouteLength] = test.walkRoute[touristRouteLength];
+  globalThis.setData({
     polyline : polyline
   });
-  if (polyline[0].points.length === polyline[1].points.length){
-    clearInterval(gloalThis.updateRouteTimeoutId);
+  if (polyline[1].points.length === test.walkRoute.length){
+    clearInterval(globalThis.updateRouteTimeoutId);
+    globalThis.updateRoute(1)
   }
 }
 
@@ -189,6 +245,7 @@ Page({
   },
 
   onLoad : function (options) {
+    globalThis = this;
       let that2 = this;
       if (options.label1){
         selectSightsList = options.label1.split(",")
@@ -200,7 +257,7 @@ Page({
         success: function(res) {
           let data = that2.data;
           data.mapWidth  = res.windowWidth;
-          data.mapHeight = res.windowHeight;
+          data.mapHeight = res.windowHeight-100;
           that2.setData(data);
         }
       });
@@ -233,23 +290,24 @@ Page({
       // this.setData(polyline);
 
       // 获得园区以及景点状态
-      getSightsStatus()
 
-      // 更新园区状态（温度等信息）
-
-      // 在地图上标记各个景点（使用marker）
+      getSightsStatus();
 
   },
 
   // 更新路线
-  updateRoute : function() {
-    gloalThis = this;
-    getPlanRoute();
+  updateRoute : function(testId) {
+    getPlanRoute(testId);
     let data = this.data;
     data.polyline[0].points = planRoutePoints;
     this.setData(data);
-    this.updateRouteTimeoutId = setInterval(updateTouristRouteTimer, 2000);
     console.log("update route");
+  },
+
+  // 游客开始
+  touristStart : function() {
+    globalThis = this;
+    this.updateRouteTimeoutId = setInterval(updateTouristRouteTimer, 500);
   },
   
 
