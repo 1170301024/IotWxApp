@@ -314,7 +314,7 @@ function parkStatus(){
 
   let sightList = [];
   for (let sight of Object.values(tiantanSights)) {
-    console.log(sight)
+    //console.log(sight)
     sightList.push(sight);
   }
   let data  = {

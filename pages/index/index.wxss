@@ -5,3 +5,34 @@
   padding : 0;
 }
 
+.but_upload { 
+  width: 20px; 
+  margin-top: 1px; 
+  margin-left:30px;
+  padding-left: 5%;
+  display:inline-block;
+  height: 50px;
+ }
+.but_select { 
+  width: 40px; 
+  margin-top: 1px; 
+  margin-right:30px;
+  padding-left: 5%;
+  display:inline-block;
+ }
+ .but_start { 
+  margin-top: 1px; 
+  margin-right:30px;
+  padding-left: 5%;
+  display:inline-block;
+ }
+ .but_recommend { 
+  margin-top: 1px; 
+  margin-right:30px;
+  padding-left: 5%;
+  display:inline-block;
+ }
+ .button{
+  display:flex;justify-content:space-around;
+  margin-top: 3px
+ }

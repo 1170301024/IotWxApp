@@ -1,0 +1,2 @@
+<!--pages/link.wxml-->
+<web-view src="https://baike.baidu.com/item/%E5%A4%A9%E5%9D%9B%E5%85%AC%E5%9B%AD/3973437?fromtitle=%E5%A4%A9%E5%9D%9B&fromid=2820294&fr=aladdin"></web-view>

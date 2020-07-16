@@ -21,9 +21,10 @@ const formatNumber = n => {
  */
 function random (min, max, n){
   // n位小数
-  let rand0_n = Math.random().toFixed(n);
-  let randInt = (Math.random() * max).toFixed(0) % (max - min) + 1 + min;
-  return n === 0 ? randInt : randInt + rand0_n;
+  //let rand0_n = Math.random().toFixed(n);
+  let randInt = (Math.random() * max).toFixed(n) % (max - min) + 1 + min;
+  console.log(randInt)
+  return randInt;
   
   
 }

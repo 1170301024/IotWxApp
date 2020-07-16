@@ -10,6 +10,7 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view> -->
+
   <!-- 信息/数据 --> 
   <view class="parkinfo">
   <text>温度：{{temperature}}</text>
@@ -17,14 +18,22 @@
   <text>湿度：{{humidity}}</text>
   <text>光照：{{lightIntensity}}</text>
   </view>
+
   <view class="map">
   <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="15" markers="{{markers}}" polyline="{{polyline}}" style="width: {{mapWidth}}px; height: {{mapHeight}}px;"></map>
   </view>
   <!-- 按钮 -->
-  <view class="">
-  <button bindtap="updateRoute">更新路线</button>
-  <button bindtap="selectSights">选择景点</button>
-  <button bindtap="touristStart">开始</button>
+  <view class="button" >
+  <button style="width:50vw;" class="but_upload"  type="primary" bindtap="updateRoute">更新路线</button>
+  <button style="width:50vw" class="but_select"  type="primary" bindtap="selectSights">选择景点</button>
+  </view>
+  <view class="button" >
+  <button style="width:50vw;" class="but_start" type="primary" bindtap="touristStart">开始</button>
+  <button style="width:50vw;" class="but_recommend" type="primary" bindtap="toOut"> 景点推送 </button>
   </view>
   
+          <!-- </scroll-view>
+        </view>
+      </view> -->
+
 </view>

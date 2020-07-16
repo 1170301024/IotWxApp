@@ -312,55 +312,60 @@ Page({
   
 
   testMap : function() {
-  //   let data = this.data;
-  //   let markers = [];
-  //   let lineSet = new Set();
-  //   for (let i = 0; i<server.tiantanMap.length; i++){
-  //     let curPoint = server.tiantanMap[i];
-  //     for (let j = 0; j < curPoint.nearPoints.length; j++){
-  //       let nearPid = curPoint.nearPoints[j];
-  //       if (nearPid > curPoint.id){
-  //         console.log('lll')
-  //         lineSet.add([
-  //           {
-  //           longitude : curPoint.longitude,
-  //           latitude : curPoint.latitude
-  //           },
-  //           {
-  //           longitude : server.tiantanMap[nearPid-1].longitude,
-  //           latitude : server.tiantanMap[nearPid-1].latitude
-  //           }
-  //       ]);
-  //       }
-  //     }
-  //     markers[i] = server.tiantanMap[i].getCoordinate();
-  //   }
-  //   console.log(lineSet)
-  //   let polyline = [];
-  //   for (let points of lineSet){
-  //     polyline.push({
-  //       points : points,
-  //       color : '#FFDDDD',
-  //       width : 4,
-  //       dottedLine : false
-  //     })
-  //   } 
-  //   console.log(markers);
-  //   data.markers = markers;
-  //   console.log(polyline)
-  //   data.polyline = polyline;
-  //   // 画线
-  //   this.setData(data)
+    let data = this.data;
+    let markers = [];
+    let lineSet = new Set();
+    for (let i = 0; i<server.tiantanMap.length; i++){
+      let curPoint = server.tiantanMap[i];
+      for (let j = 0; j < curPoint.nearPoints.length; j++){
+        let nearPid = curPoint.nearPoints[j];
+        if (nearPid > curPoint.id){
+          console.log('lll')
+          lineSet.add([
+            {
+            longitude : curPoint.longitude,
+            latitude : curPoint.latitude
+            },
+            {
+            longitude : server.tiantanMap[nearPid-1].longitude,
+            latitude : server.tiantanMap[nearPid-1].latitude
+            }
+        ]);
+        }
+      }
+      markers[i] = server.tiantanMap[i].getCoordinate();
+    }
+    console.log(lineSet)
+    let polyline = [];
+    for (let points of lineSet){
+      polyline.push({
+        points : points,
+        color : '#FFDDDD',
+        width : 4,
+        dottedLine : false
+      })
+    } 
+    console.log(markers);
+    data.markers = markers;
+    console.log(polyline)
+    data.polyline = polyline;
+    // 画线
+    this.setData(data)
   },
 
   selectSights : function() {
     wx.navigateTo({
       url: '/pages/select/select_point',
     })
-  }
+  },
+
+  toOut:()=>{
+    wx.navigateTo({
+       url: '/pages/link/link',
+    })
+  },
 
 });
-
 
 
 
