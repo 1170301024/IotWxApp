@@ -1,0 +1,12 @@
+<!--wxml-->
+<view class='wrap'>
+ <view class='checkbox-con'>
+  <text>景点</text>
+ <checkbox-group bindchange="checkboxChange1">
+  <label class="{{item.checked?'checkbox checked':'checkbox'}}" wx:for="{{checkboxArr1}}" bindtap='checkbox' data-index="{{index}}" wx:key="item.name">
+  <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.name}}
+  </label>
+ </checkbox-group>
+  <button type='primary' bindtap='confirm'>提交</button>
+ </view>
+</view>

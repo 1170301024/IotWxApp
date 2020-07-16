@@ -1,0 +1,29 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view> -->
+  <!-- 信息/数据 -->
+  <view class="">
+  <text>温度：1</text>
+
+  <text>湿度：2</text>
+  <text>光照：3</text>
+  </view>
+  <view class="map">
+  <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="15" markers="{{markers}}" polyline="{{polyline}}" style="width: {{mapWidth}}px; height: {{mapHeight}}px;"></map>
+  </view>
+  <!-- 按钮 -->
+  <view class="">
+  <button bindtap="updateRoute">更新路线</button>
+  <button bindtap="selectSights">选择景点</button>
+  </view>
+  
+</view>
